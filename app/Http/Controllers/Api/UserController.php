@@ -11,7 +11,12 @@ use Yaza\LaravelGoogleDriveStorage\Gdrive;
 use File;
 
 class UserController extends Controller
-{
+{    
+    /**
+     * index
+     *
+     * @return void
+     */
     public function index()
     {
         $users = User::latest()->paginate(5);
@@ -23,7 +28,13 @@ class UserController extends Controller
             'users'     => $users
         ]);
     }
-
+    
+    /**
+     * store
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function store(Request $request)
     {
         //set validasi
@@ -65,7 +76,13 @@ class UserController extends Controller
             'message'   => 'User Gagal Ditambahkan!'
         ], 404);
     }
-
+    
+    /**
+     * show
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function show($id)
     {
         $user = User::whereId($id)->first();
@@ -86,7 +103,14 @@ class UserController extends Controller
             'user'     => $user
         ], 404);
     }
-
+    
+    /**
+     * update
+     *
+     * @param  mixed $request
+     * @param  mixed $user
+     * @return void
+     */
     public function update(Request $request, User $user)
     {
         //set validasi
@@ -140,7 +164,13 @@ class UserController extends Controller
         ]);
         
     }
-
+    
+    /**
+     * destroy
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function destroy($id)
     {
         $user = User::whereId($id)->first();
